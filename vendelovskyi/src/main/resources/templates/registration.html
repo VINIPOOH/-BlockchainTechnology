@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:include="~{layout/header.html::head_base_data}"></div>
+    <title th:text="#{title.registration.page}"></title>
+</head>
+<body>
+<div th:include="~{layout/header.html::header}"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-heading" th:text="#{registration.page.form.header}"></h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form" method="post" th:action="@{/registration}" th:object="${registrationInfoDto}">
+                        <div class="alert alert-danger" role="alert" th:if="${inputPasswordsIsNotEquals}">
+                            <p th:if="${inputPasswordsIsNotEquals}"
+                               th:text="#{registration.page.form.password.repeat.wrong}"></p>
+                        </div>
+                        <div class="alert alert-danger" role="alert" th:if="${OccupiedLoginException}">
+                            <p th:if="${inputPasswordsIsNotEquals}"
+                               th:text="#{registration.page.form.login.already.taken"></p>
+                        </div>
+                        <div class="alert alert-danger" role="alert" th:if="${#fields.hasErrors()}">
+                            <p th:if="${#fields.hasErrors('username')}"
+                               th:text="#{registration.page.form.login.wrong}"></p>
+                            <p th:if="${#fields.hasErrors('passwordRepeat')}"
+                               th:text="#{registration.page.form.password.repeat.wrong}"></p>
+                            <p th:if="${#fields.hasErrors('password')}"
+                               th:text="#{registration.page.form.password.wrong}"></p>
+                        </div>
+
+                        <input th:name="${_csrf.headerName}" th:value="${_csrf.token}" type="hidden">
+                        <div class="form-group">
+                            <input class="form-control" id="username" name="username" placeholder="notInt" th:placeholder="#{registration.page.form.label.email}"
+                                   type="text">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="password" name="password" th:placeholder="#{login.page.form.label.password}"
+                                   type="password">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" id="passwordRepeat" name="passwordRepeat" th:placeholder="#{login.page.form.label.passwordRepeat}"
+                                   type="password">
+                        </div>
+                        <button class="btn btn-success" th:text="#{registration.page.button.registration}"
+                                type="submit"></button>
+                        <a align="left" class="btn" th:href="@{/login}"
+                           th:text="#{registration.page.button.gotoLogin}"></a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
