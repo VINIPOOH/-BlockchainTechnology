@@ -85,7 +85,7 @@ CREATE INDEX `FK9cdoukvc31ea903e9gaa8fijl` ON `trainingdb`.`way` (`locality_get_
 
 
 -- -----------------------------------------------------
--- Table `trainingdb`.`delivery`
+-- Table `trainingdb`.`blockchain`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `trainingdb`.`delivery` ;
 

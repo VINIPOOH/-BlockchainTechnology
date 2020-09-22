@@ -1,4 +1,5 @@
-package ua.testing.delivery.dto.mapper;
+package ua.testing.blockchain.dto.mapper;
+
 /**
  * @author Vendelovskyi Ivan
  * @version 1.0
